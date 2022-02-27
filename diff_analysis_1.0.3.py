@@ -14,8 +14,7 @@ import os
 main_description = '''
 diff_analysis.py
 Differential analysis
-Author: Hong (Vincent) Hu (honghu@bsd.uchicago.edu)
-Bioinformatics Core, Center for Research Informatics, Biological Science Division, The University of Chicago
+Author: Vincent Hu 
 
 This wrapper will prepare R scripts to perform differential analysis GLM test on each factor
 listed in meta table, as well as on all/selected interaction terms. Traditional pair-wise tests between samples groups
@@ -31,12 +30,11 @@ Example: diff_analysis.py -c counts.txt -m meta.txt -o CRI_123 -nx -pca -pcal
 
 Suggestion: Please load anaconda environment to make sure you have Python 3 in your path
 \"export $PATH:/group/bioinformatics/software/anaconda3/bin\" # If you have not set up Anaconda environment
-\"source activate honghu3.7\"
 
 '''
 
-if os.environ['CONDA_DEFAULT_ENV'] != 'honghu3.7':
-    raise Exception('Please load Anaconda environment by \"source activate honghu3.7\"')
+if os.environ['CONDA_DEFAULT_ENV'] != 'python3.7':
+    raise Exception('Please load Anaconda environment by \"source activate python3.7\"')
 
 import os.path
 import argparse
@@ -56,7 +54,7 @@ import txt2xlsx
 # =====================================================================================================================
 # Global variables
 # =====================================================================================================================
-anno_table_file = '/group/bioinformatics/honghu/REF/annotation/RNAseq/compiled_annotation_list.txt'
+anno_table_file = '~/REF/annotation/RNAseq/compiled_annotation_list.txt'
 anno_dic = {}
 # =====================================================================================================================
 # Class definitions
@@ -1303,7 +1301,6 @@ def prep_edger_script(args,
         script.append('              title = \"Principal Component Analysis\",')
         script.append('              font.main = c(20, \"bold\", \"black\"),')
         script.append('              subtitle = \"' + args.pca_subtitle + '\",')
-        script.append('              caption = \"Source: Center for Research Informatics, The University of Chicago, Medicine and Biological Sciences\",')
         script.append('              xlab = paste0(\"PC1 (\", format(round(get_eig(data.pca)[1, 2], 1), nsmall=1), \"%)\"),')
         script.append('              ylab = paste0(\"PC2 (\", format(round(get_eig(data.pca)[2, 2], 1), nsmall=1), \"%)\"),')
         script.append('              font.x = 16, font.y = 16,')
@@ -1316,7 +1313,6 @@ def prep_edger_script(args,
         script.append('              title = \"Principal Component Analysis\",')
         script.append('              font.main = c(20, \"bold\", \"black\"),')
         script.append('              subtitle = \"' + args.pca_subtitle + '\",')
-        script.append('              caption = \"Source: CRI, The University of Chicago\",')
         script.append('              xlab = paste0(\"PC1 (\", format(round(get_eig(data.pca)[1, 2], 1), nsmall=1), \"%)\"),')
         script.append('              ylab = paste0(\"PC3 (\", format(round(get_eig(data.pca)[3, 2], 1), nsmall=1), \"%)\"),')
         script.append('              font.x = 16, font.y = 16,')
@@ -1329,7 +1325,6 @@ def prep_edger_script(args,
         script.append('              title = \"Principal Component Analysis\",')
         script.append('              font.main = c(20, \"bold\", \"black\"),')
         script.append('              subtitle = \"' + args.pca_subtitle + '\",')
-        script.append('              caption = \"Source: CRI, The University of Chicago\",')
         script.append('              xlab = paste0(\"PC2 (\", format(round(get_eig(data.pca)[2, 2], 1), nsmall=1), \"%)\"),')
         script.append('              ylab = paste0(\"PC3 (\", format(round(get_eig(data.pca)[3, 2], 1), nsmall=1), \"%)\"),')
         script.append('              font.x = 16, font.y = 16,')
